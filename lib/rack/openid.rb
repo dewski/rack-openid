@@ -181,7 +181,8 @@ module Rack #:nodoc:
 
         scheme, port = req.scheme, req.port
         if scheme == "https" && port != 443 ||
-            scheme == "http" && port != 80
+            scheme == "http" && port != 80 ||
+            !port.to_s.match(/\d{4}/)
           url << ":#{port}"
         end
 

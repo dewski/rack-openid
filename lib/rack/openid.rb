@@ -178,8 +178,10 @@ module Rack #:nodoc:
       def realm_url(req)
         url = req.scheme + "://"
         url << req.host
-
+        
         scheme, port = req.scheme, req.port
+        Rails.logger.info "Port: #{port.to_s.match(/\d{4}/)}"
+        Rails.logger.info port
         if scheme == "https" && port != 443 ||
             scheme == "http" && port != 80 ||
             !port.to_s.match(/\d{4}/)
